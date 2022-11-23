@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head-section') %>
+  </head>
+  <body>
+    <!-- navbar -->
+    <%- include('../partials/admin-navbar') %>
+
+    <section class="container my-5">
+      <div class="d-flex justify-content-end mb-3">
+        <a href="/admin/add-user" class="btn btn-dark">Add User</a>
+      </div>
+      <form action="/admin" method="get">
+        <div class="input-group mb-3 mx-auto" style="max-width: 30rem">
+          <input
+            type="text"
+            id="query"
+            name="query"
+            required
+            class="form-control"
+            placeholder="Search users"
+            aria-label="Search users"
+            aria-describedby="basic-addon2"
+          />
+          <button type="submit" class="input-group-text" id="basic-addon2">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+      </form>
+      <div class="table-responsive">
+        <table class="table align-middle">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Full name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% users.forEach((user,index) => { %>
+            <tr>
+              <th scope="row"><%=index+1%></th>
+              <td><%= user.name %></td>
+              <td><%= user.email %></td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <a
+                    href="/admin/edit-user/<%= user._id %>"
+                    class="btn btn-link"
+                  >
+                    <i class="bi bi-pencil-square text-success me-4"></i>
+                  </a>
+
+                  <button
+                    class="btn btn-link"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modal<%=user._id  %>"
+                  >
+                    <i class="bi bi-trash3-fill text-danger"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+
+            <!-- Modal -->
+            <div
+              class="modal fade"
+              id="modal<%=user._id  %>"
+              tabindex="-1"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <i
+                      class="bi bi-exclamation-triangle text-danger me-2"
+                      style="font-size: 1.5rem"
+                    ></i>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">
+                      Delete User
+                    </h1>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    Are you sure you want to delete the user "<span
+                      class="fw-semibold"
+                      ><%= user.name %></span
+                    >"?
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn" data-bs-dismiss="modal">
+                      Cancel
+                    </button>
+                    <form
+                      action="/admin/delete-user/<%= user._id %>"
+                      method="post"
+                    >
+                      <button type="submit" class="btn btn-danger">
+                        Delete
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <% })%>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- alert start -->
+    <% if(message!=undefined) {%>
+    <div
+      id="alert-div"
+      class="alert alert-success position-fixed top-0 mt-5"
+      style="max-width: 20rem"
+      role="alert"
+    >
+      <%=message %>
+    </div>
+    <% } %>
+    <!-- alert end -->
+
+    <script>
+      const alert = document.getElementById("alert-div");
+      const alertShow = () => {
+        alert.style.display = "none";
+      };
+      setTimeout(() => {
+        alertShow();
+      }, 3000);
+    </script>
+  </body>
+</html>

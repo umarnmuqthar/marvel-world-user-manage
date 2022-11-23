@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head-section') %>
+    <link rel="stylesheet" href="/css/form-autofill-normal.css" />
+    <script defer src="/js/signup-validation.js"></script>
+  </head>
+  <body>
+    <!-- navbar -->
+    <%- include('../partials/admin-navbar') %>
+
+    <section class="container my-5" style="max-width: 30rem">
+      <form action="/admin/edit-user" method="post">
+        <div class="mb-3">
+          <label for="name" class="form-label">Full name</label>
+          <input
+            type="text"
+            name="name"
+            value="<%= user.name %>"
+            required
+            class="form-control"
+            id="name"
+            placeholder="John Doe"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input
+            type="email"
+            name="email"
+            value="<%= user.email %>"
+            required
+            class="form-control"
+            id="email"
+            placeholder="John@gmail.com"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="text"
+            name="password"
+            required
+            value="<%= user.password %>"
+            class="form-control"
+            id="password"
+            placeholder="********"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="confirmPassword" class="form-label"
+            >Confirm password</label
+          >
+          <input
+            type="password"
+            name="confirmPassword"
+            value=""
+            required
+            class="form-control"
+            id="confirmPassword"
+            placeholder="********"
+          />
+          <small id="messageBox" class="text-danger d-none"
+            >Passwords must be same</small
+          >
+        </div>
+        <div class="mb-3">
+          <input
+            type="hidden"
+            name="id"
+            value="<%= user._id %>"
+            class="form-control"
+            id="id"
+          />
+        </div>
+        <button type="submit" class="btn btn-dark">Update user</button>
+      </form>
+    </section>
+
+    <!-- alert start -->
+    <% if(message!=undefined) {%>
+    <div
+      id="alert-div"
+      class="alert alert-danger position-fixed bottom-0 end-0 mb-5 me-3"
+      style="max-width: 20rem"
+      role="alert"
+    >
+      <%=message %>
+    </div>
+    <% } %>
+    <!-- alert end -->
+
+    <script>
+      const alert = document.getElementById("alert-div");
+      const alertShow = () => {
+        alert.style.display = "none";
+      };
+      setTimeout(() => {
+        alertShow();
+      }, 3000);
+    </script>
+  </body>
+</html>

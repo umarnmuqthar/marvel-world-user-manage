@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head-section') %>
+  </head>
+  <body>
+    <!-- navbar -->
+    <%- include('../partials/admin-navbar') %>
+
+    <section class="container my-5">
+      <div class="d-flex justify-content-end mb-3">
+        <button class="btn btn-dark">Add Movie</button>
+      </div>
+      <div class="table-responsive">
+        <table class="table align-middle">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Movie name</th>
+              <th scope="col">Release date</th>
+              <th scope="col">Thumbnail</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Thor: Love and Thunder</td>
+              <td>July 8, 2022</td>
+              <td>
+                <img
+                  src="https://img1.hotstarext.com/image/upload/f_auto,t_hcdl/sources/r1/cms/prod/8295/1328295-h-b05c8156e59a"
+                  alt=""
+                  style="width: 5rem"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </body>
+</html>

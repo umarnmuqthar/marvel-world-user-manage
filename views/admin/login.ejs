@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head-section') %>
+    <link rel="stylesheet" href="/css/sign.css" />
+  </head>
+
+  <body style="background-color: #800404">
+    <section
+      class="d-flex justify-content-center align-items-center container"
+      style="height: 95vh"
+    >
+      <div class="row align-items-center text-md-start text-center text-light">
+        <div class="col-md-4 customfont my-5 mb-md-0">ADMIN MARVEL</div>
+        <div class="col-md-7">
+          <form action="/admin/login" method="POST">
+            <div class="mb-3">
+              <div class="form-floating mb-3">
+                <input
+                  style="background-color: transparent; border: none"
+                  type="email"
+                  name="email"
+                  required
+                  class="form-control text-light border-bottom"
+                  id="email"
+                  placeholder="name@example.com"
+                />
+                <label for="email">Email address</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input
+                  style="background-color: transparent; border: none"
+                  type="password"
+                  name="password"
+                  class="form-control text-light border-bottom"
+                  id="password"
+                  required
+                  placeholder="password"
+                />
+                <label for="password">Password</label>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-light btn-block w-100">
+              Login
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+    <!-- alert start -->
+    <% if(message!=undefined) {%>
+    <div
+      id="alert-div"
+      class="alert alert-danger position-fixed bottom-0 end-0 mb-5 me-3"
+      style="max-width: 20rem"
+      role="alert"
+    >
+      <%=message %>
+    </div>
+    <% } %>
+    <!-- alert end -->
+    <div class="text-center text-white">
+      Made with <span class="text-danger">&hearts;</span> from Brocamp
+    </div>
+
+    <script>
+      const alert = document.getElementById("alert-div");
+      const alertShow = () => {
+        alert.style.display = "none";
+      };
+      setTimeout(() => {
+        alertShow();
+      }, 3000);
+    </script>
+  </body>
+</html>

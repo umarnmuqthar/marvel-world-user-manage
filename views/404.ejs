@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('partials/head-section') %>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  </head>
+  <body>
+    <!-- navbar -->
+    <% if(isAdmin===true){ %> <%- include('partials/admin-navbar') %> <% }else{
+    %> <%-include('partials/navbar') %> <% } %>
+
+    <main>
+      <lottie-player
+        src="https://assets7.lottiefiles.com/private_files/lf30_conoeouc.json"
+        background="transparent"
+        speed="1"
+        style="height: 80vh"
+        loop
+        autoplay
+      ></lottie-player>
+    </main>
+  </body>
+</html>
